@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Push Notification Demo">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="PushDemo">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Push Notification Demo</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+  <script>
+    // Initialize Firebase
+    firebase.initializeApp({
+      apiKey: 'AIzaSyCKV3U6NgPSuTCagYbOqqDK1NFkWoDMpjw',
+      appId: '1:597094987517:web:f522e91c8720cabbd0f094',
+      messagingSenderId: '597094987517',
+      projectId: 'push-notification-1ecd2',
+      authDomain: 'push-notification-1ecd2.firebaseapp.com',
+      storageBucket: 'push-notification-1ecd2.appspot.com',
+      measurementId: 'G-0D1ZQJGF7P'
+    });
+
+    const messaging = firebase.messaging();
+
+    // Request permission and get token
+    function requestNotificationPermission() {
+      console.log('Requesting permission...');
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+          getToken();
+        } else {
+          console.log('Unable to get permission to notify.');
+        }
+      });
+    }
+
+    // Get FCM token
+    function getToken() {
+      messaging.getToken({ 
+        vapidKey: 'BKAjGem4qLzyIDPuMhZ9FPLQuIThdWAqcFkhgQyJPY6uze9QKu2vucwPymmYywoy2cqUUcVEfRUhUIA6azx0AxY'
+      }).then((currentToken) => {
+        if (currentToken) {
+          console.log('FCM Token:', currentToken);
+          // Send token to your server if needed
+        } else {
+          console.log('No registration token available. Request permission to generate one.');
+          requestNotificationPermission();
+        }
+      }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+      });
+    }
+
+    // Check initial token
+    getToken();
+
+    // Handle token refresh
+    messaging.onTokenRefresh(() => {
+      console.log('Token refreshed');
+      getToken();
+    });
+
+    // Handle incoming messages when app is in foreground
+    messaging.onMessage((payload) => {
+      console.log('Foreground message received:', payload);
+      
+      // Customize how you want to show the notification
+      const notificationTitle = payload.notification?.title || 'New Message';
+      const notificationOptions = {
+        body: payload.notification?.body || 'You have a new message',
+        icon: '/icons/Icon-192.png',
+        data: payload.data
+      };
+
+      // Show notification
+      if (Notification.permission === 'granted') {
+        new Notification(notificationTitle, notificationOptions);
+      }
+    });
+  </script>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
