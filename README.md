@@ -69,18 +69,25 @@ Both backends support:
 
 ---
 
-## 📞 Contact Me  
+## 💼 Hire Me & Support My Work
 
-For **custom Flutter projects**, **API integrations**, or **consulting**, reach out:  
+### 🤝 Available for Projects
+I'm open to **Flutter development**, **API integrations**, and **consulting work**.
 
-📱 **Phone**: [+91 7991327022](tel:+917991327022)  
+📱 **Phone/WhatsApp**: [+91 7991327022](https://wa.me/917991327022)  
 📧 **Email**: [harendraprajapati72@gmail.com](mailto:harendraprajapati72@gmail.com)  
 🌐 **Website**: [nayaproyog.com](https://nayaproyog.com)  
-💻 **GitHub**: [github.helloharendra.io](https://github.helloharendra.io)  
+💻 **Portfolio**: [github.helloharendra.io](https://github.helloharendra.io)  
+
+### ☕ Buy Me a Coffee
+If you appreciate my work, consider supporting me:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/helloharendra)
 
 ---
 
 ## ⭐ Support & Contributions  
 
 If you find this project useful, **give it a ⭐ on GitHub!**  
-Contributions & feedback are welcome! 🚀  
+Contributions & feedback are welcome! 🚀 
+ 
